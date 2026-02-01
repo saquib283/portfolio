@@ -1,0 +1,121 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Moon, Sun } from 'lucide-react';
+import Link from 'next/link';
+import { useTheme } from '@/contexts/ThemeContext';
+
+const Navbar = ({ settings }: { settings?: any }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const { theme, toggleTheme } = useTheme();
+    const resumeLink = settings?.contact?.resume;
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const links = [
+        { name: 'Work', href: '/#projects' },
+        { name: 'About', href: '/#about' },
+        { name: 'Guestbook', href: '/guestbook' },
+        { name: 'Contact', href: '/#contact' },
+    ];
+
+    return (
+        <nav
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'
+                }`}
+        >
+            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                <Link href="/" className="font-display text-2xl font-bold tracking-tighter text-primary hover:text-accent transition-colors">
+                    MRS.
+                </Link>
+
+                {/* Desktop Menu */}
+                <div className="hidden md:flex items-center space-x-10">
+                    {links.map((link) => (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            className="text-sm font-medium text-secondary hover:text-primary transition-colors relative group"
+                        >
+                            {link.name}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
+                        </a>
+                    ))}
+                    {resumeLink && (
+                        <a
+                            href={resumeLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-5 py-2 bg-primary text-background font-bold rounded-full hover:opacity-90 transition-all transform hover:scale-105 active:scale-95 text-sm"
+                        >
+                            Resume
+                        </a>
+                    )}
+                    {/* {(!settings || settings.features?.themeToggle !== false) && (
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 text-secondary hover:text-accent transition-colors rounded-full hover:bg-surface"
+                            aria-label="Toggle theme"
+                        >
+                            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                        </button>
+                    )} */}
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="md:hidden text-primary hover:text-accent transition-colors"
+                    aria-label="Toggle menu"
+                >
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border md:hidden"
+                    >
+                        <div className="flex flex-col items-center py-8 space-y-6">
+                            {links.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-xl font-display font-medium text-secondary hover:text-primary transition-colors"
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
+                            {resumeLink && (
+                                <a
+                                    href={resumeLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xl font-display font-medium text-accent hover:text-primary transition-colors"
+                                >
+                                    Resume
+                                </a>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </nav>
+    );
+};
+
+export default Navbar;
