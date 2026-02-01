@@ -1,0 +1,10 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/guestbook/[id]/route.js")
+R.c("server/chunks/node_modules_next_bf4e539e._.js")
+R.c("server/chunks/node_modules_next-auth_1810886e._.js")
+R.c("server/chunks/node_modules_openid-client_d15f72b3._.js")
+R.c("server/chunks/node_modules_jose_dist_node_cjs_bd88468e._.js")
+R.c("server/chunks/[root-of-the-server]__5e4d94f2._.js")
+R.c("server/chunks/[root-of-the-server]__d28c7f58._.js")
+R.c("server/chunks/_next-internal_server_app_api_guestbook_[id]_route_actions_674d346a.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/guestbook/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/guestbook/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports
