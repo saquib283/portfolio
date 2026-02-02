@@ -1,11 +1,24 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function ActivityHeatmap() {
     // Generate mock data for a 7x20 grid
     const days = 7;
     const weeks = 24;
+
+    const [data, setData] = useState<number[][]>([]);
+
+    useEffect(() => {
+        const newData = Array.from({ length: weeks }).map(() =>
+            Array.from({ length: days }).map(() => {
+                const level = Math.floor(Math.random() * 5);
+                return level === 0 ? 0.05 : level === 1 ? 0.1 : level === 2 ? 0.3 : level === 3 ? 0.6 : 0.9;
+            })
+        );
+        setData(newData);
+    }, []);
 
     return (
         <div className="bg-surface/50 p-6 rounded-3xl border border-border/50">
@@ -18,25 +31,23 @@ export default function ActivityHeatmap() {
                     <span>Sun</span>
                 </div>
                 <div className="flex-grow flex gap-1.5 overflow-hidden pt-1">
-                    {Array.from({ length: weeks }).map((_, wIdx) => (
+                    {data.length > 0 ? data.map((week, wIdx) => (
                         <div key={wIdx} className="flex flex-col gap-1.5 flex-grow">
-                            {Array.from({ length: days }).map((_, dIdx) => {
-                                const level = Math.floor(Math.random() * 5); // 0-4
-                                const opacity = level === 0 ? 0.05 : level === 1 ? 0.1 : level === 2 ? 0.3 : level === 3 ? 0.6 : 0.9;
-                                return (
-                                    <motion.div
-                                        key={dIdx}
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        transition={{ delay: (wIdx * 7 + dIdx) * 0.005 }}
-                                        className="w-full aspect-square rounded-sm bg-accent"
-                                        style={{ opacity }}
-                                        whileHover={{ scale: 1.5, zIndex: 10 }}
-                                    />
-                                );
-                            })}
+                            {week.map((opacity, dIdx) => (
+                                <motion.div
+                                    key={dIdx}
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ delay: (wIdx * 7 + dIdx) * 0.005 }}
+                                    className="w-full aspect-square rounded-sm bg-accent"
+                                    style={{ opacity }}
+                                    whileHover={{ scale: 1.5, zIndex: 10 }}
+                                />
+                            ))}
                         </div>
-                    ))}
+                    )) : (
+                        <div className="w-full h-full flex items-center justify-center text-xs text-secondary/30 animate-pulse">Initializing...</div>
+                    )}
                 </div>
             </div>
             <div className="mt-4 flex items-center justify-end gap-2 text-[9px] text-secondary font-mono">
