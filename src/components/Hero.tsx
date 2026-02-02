@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Download } from 'lucide-react';
 import Link from 'next/link';
@@ -20,10 +21,20 @@ const Hero = ({ settings }: { settings?: any }) => {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center">
                 <motion.div
+                    className="flex flex-col items-center"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
+                    <div className="mb-8 relative w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-surface shadow-2xl">
+                        <Image
+                            src="/profile.jpeg"
+                            alt="Profile"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
                     <span className="inline-block py-1 px-3 rounded-full bg-surface border border-border text-xs font-medium tracking-wider text-accent uppercase mb-4">
                         Available for new projects
                     </span>
@@ -48,7 +59,7 @@ const Hero = ({ settings }: { settings?: any }) => {
                     <Magnetic strength={0.2}>
                         <a
                             href="#projects"
-                            className="px-8 py-3 bg-primary text-background font-semibold rounded-full hover:opacity-90 transition-all transform hover:scale-105 block"
+                            className="inline-flex items-center justify-center px-8 py-3 bg-primary text-background font-semibold rounded-full hover:bg-primary/90 shadow-sm hover:shadow-md transition-all transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background"
                         >
                             {ctaText}
                         </a>
@@ -59,7 +70,7 @@ const Hero = ({ settings }: { settings?: any }) => {
                                 href={settings.contact.resume}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-8 py-3 bg-surface border border-border text-primary font-medium rounded-full hover:bg-surfaceHighlight transition-all transform hover:scale-105"
+                                className="inline-flex items-center gap-2 px-8 py-3 bg-surface border border-border text-primary font-medium rounded-full hover:bg-surfaceHighlight transition-all transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background"
                             >
                                 <Download size={18} className="text-accent" />
                                 Resume
@@ -69,7 +80,7 @@ const Hero = ({ settings }: { settings?: any }) => {
                     <Magnetic strength={0.2}>
                         <a
                             href="#contact"
-                            className="px-8 py-3 border border-border text-primary font-medium rounded-full hover:bg-surface transition-all block"
+                            className="inline-flex items-center justify-center px-8 py-3 border border-border text-primary font-medium rounded-full hover:bg-surfaceHighlight transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background"
                         >
                             Contact Me
                         </a>

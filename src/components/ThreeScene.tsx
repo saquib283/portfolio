@@ -16,7 +16,7 @@ function AbstractShape({ position, color }: { position: [number, number, number]
     });
 
     return (
-        <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+        <Float speed={2} rotationIntensity={1} floatIntensity={0.5}>
             <mesh
                 ref={meshRef}
                 position={position}
@@ -83,8 +83,8 @@ export default function Scene() {
     const accentColor = "#ff3333";
 
     return (
-        <div className="absolute -inset-y-20 inset-x-0 z-20 pointer-events-none opacity-60">
-            <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
+        <div className="absolute -inset-y-32 inset-x-0 z-0 opacity-60">
+            <Canvas camera={{ position: [0, 0, 6], fov: 60 }}>
                 <ambientLight intensity={isDark ? 0.4 : 0.8} />
                 <pointLight position={[10, 10, 10]} intensity={1.5} color={accentColor} />
                 <pointLight position={[-10, -10, -10]} intensity={1} color={isDark ? "#3333ff" : "#0066ff"} />
@@ -102,9 +102,9 @@ export default function Scene() {
                 <Particles color={particleColor} />
 
                 {/* Floating Shapes positioned to frame the center content without fully obscuring it */}
-                <AbstractShape position={[2.5, 1.2, -1]} color={shapeColor} />
-                <AbstractShape position={[-2.8, -1.2, -2]} color={shapeColor} />
-                <AbstractShape position={[0.8, -1.5, 1]} color={shapeColor} />
+                <AbstractShape position={[2.5, 1.0, -1]} color={shapeColor} />
+                <AbstractShape position={[-2.8, -1.0, -2]} color={shapeColor} />
+                <AbstractShape position={[0.8, -1.2, 1]} color={shapeColor} />
 
                 <RandomizedLight
                     amount={8}

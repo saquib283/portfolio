@@ -47,7 +47,7 @@ export default function ProcessSection() {
                     </p>
                 </header>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
                     {/* Connecting line for desktop */}
                     <div className="hidden md:block absolute top-[2.5rem] left-[2rem] right-[2rem] h-[1px] bg-border/20 -z-10" />
 
@@ -58,6 +58,7 @@ export default function ProcessSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
+                            style={{ zIndex: steps.length - idx }}
                             className="group relative p-8 bg-surface/30 backdrop-blur-sm border border-border/10 rounded-3xl hover:border-accent/30 transition-all duration-500"
                         >
                             <div className={`w-12 h-12 ${step.bg} ${step.color} rounded-2xl flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform`}>

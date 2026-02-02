@@ -3,20 +3,24 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase } from 'lucide-react';
-import SkillCloud3D from './SkillCloud3D';
+import { Badge } from './ui';
+import SkillOrbit from './SkillOrbit';
 
-const About = ({ settings, experience = [] }: { settings?: any, experience?: any[] }) => {
+
+const About = ({ settings, experience = [], skills = [] }: { settings?: any, experience?: any[], skills?: any[] }) => {
     const title = settings?.title || "More than just code.";
     const description = settings?.description || "I bridge the gap between design and engineering. My approach is user-centric, focusing on creating seamless experiences that look great and perform even better.";
-    const skills = settings?.skills && settings.skills.length > 0
-        ? settings.skills
-        : ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Framer Motion", "UI/UX Design"];
+
+    // Prioritize dynamic skills from DB, then settings, then fallback
+    const displaySkills = skills && skills.length > 0
+        ? skills.map(s => typeof s === 'string' ? s : s.name)
+        : (settings?.skills && settings.skills.length > 0 ? settings.skills : ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Framer Motion", "UI/UX Design"]);
 
     return (
         <section id="about" className="py-24 px-6 bg-surface">
             <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                    {/* Left Column: Intro & Skills */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 item-start mb-24">
+                    {/* Left Column: Intro */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -28,14 +32,6 @@ const About = ({ settings, experience = [] }: { settings?: any, experience?: any
                         <p className="text-secondary text-lg leading-relaxed mb-8">
                             {description}
                         </p>
-
-                        <div className="bg-surfaceHighlight/50 p-6 rounded-3xl border border-border/50 backdrop-blur-sm">
-                            <h3 className="text-xl font-bold text-primary mb-6 flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                                Technical Arsenal
-                            </h3>
-                            <SkillCloud3D skills={skills} />
-                        </div>
                     </motion.div>
 
                     {/* Right Column: Experience Timeline */}
@@ -86,6 +82,18 @@ const About = ({ settings, experience = [] }: { settings?: any, experience?: any
                         </div>
                     </motion.div>
                 </div>
+
+
+            </div>
+
+            {/* Skills Visualization */}
+            <div className="max-w-6xl mx-auto mt-20">
+                <div className="flex items-center justify-center gap-3 mb-10">
+                    <div className="h-[1px] w-12 bg-accent/30" />
+                    <span className="text-secondary uppercase tracking-[0.2em] text-xs font-bold">Tech Stack</span>
+                    <div className="h-[1px] w-12 bg-accent/30" />
+                </div>
+                <SkillOrbit skills={displaySkills} />
             </div>
         </section>
     );

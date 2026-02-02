@@ -17,15 +17,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com'),
     title: {
-        default: "Portfolio | Creative Developer",
+        default: "Portfolio | Md Rehan Saquib",
         template: "%s | Portfolio"
     },
     description: "A showcase of creative development, interactive experiences, and full-stack engineering.",
     keywords: ["Next.js", "React", "Developer", "Portfolio", "Three.js", "Creative", "Full Stack", "Web Development"],
-    authors: [{ name: "Portfolio Owner" }],
+    authors: [{ name: "Md Rehan Saquib" }],
     creator: "Portfolio Owner",
     openGraph: {
-        title: "Portfolio | Creative Developer",
+        title: "Portfolio | Md Rehan Saquib",
         description: "A showcase of creative development and interactive experiences.",
         url: "/",
         siteName: "Portfolio",
@@ -44,11 +44,14 @@ export const metadata: Metadata = {
         },
     },
     twitter: {
-        title: "Portfolio | Creative Developer",
+        title: "Portfolio | Md Rehan Saquib",
         card: "summary_large_image",
     },
     alternates: {
         canonical: "/",
+    },
+    icons: {
+        icon: '/icon.png',
     },
 };
 

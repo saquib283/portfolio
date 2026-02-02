@@ -3,6 +3,7 @@ import StructuredData from '../components/StructuredData';
 import Project from '../models/Project';
 import Settings from '../models/Settings';
 import Experience from '../models/Experience';
+import Skill from '../models/Skill';
 import connectToDatabase from '../lib/db';
 
 export const revalidate = 60;
@@ -43,13 +44,34 @@ async function getExperience() {
     }
 }
 
+async function getSkills() {
+    try {
+        await connectToDatabase();
+        const skills = await Skill.find({}).sort({ order: 1, createdAt: 1 }).lean();
+        return JSON.parse(JSON.stringify(skills));
+    } catch (error) {
+        console.error("Failed to fetch skills:", error);
+        return [];
+    }
+}
+
 export default async function Home() {
-    const [projects, settings, experience] = await Promise.all([getProjects(), getSettings(), getExperience()]);
+    const [projects, settings, experience, skills] = await Promise.all([
+        getProjects(),
+        getSettings(),
+        getExperience(),
+        getSkills()
+    ]);
 
     return (
         <>
             <StructuredData settings={settings} />
-            <ClientHome projects={projects} settings={settings} experience={experience} />
+            <ClientHome
+                projects={projects}
+                settings={settings}
+                experience={experience}
+                skills={skills}
+            />
         </>
     );
 }

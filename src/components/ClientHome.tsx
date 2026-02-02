@@ -21,7 +21,7 @@ import TestimonialsSection from './TestimonialsSection';
 import NewsletterSection from './NewsletterSection';
 import SpotifyTracker from './SpotifyTracker';
 import GitHubPulse from './GitHubPulse';
-import DynamicResume from './DynamicResume';
+
 import Terminal from './Terminal';
 import { useTerminal } from '@/hooks/useTerminal';
 
@@ -29,9 +29,10 @@ interface ClientHomeProps {
     projects: ProjectType[];
     settings?: any;
     experience?: any[];
+    skills: any[];
 }
 
-export default function ClientHome({ projects, settings, experience }: ClientHomeProps) {
+export default function ClientHome({ projects, settings, experience, skills }: ClientHomeProps) {
     const [loading, setLoading] = useState(true);
     const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
@@ -85,14 +86,17 @@ export default function ClientHome({ projects, settings, experience }: ClientHom
                         <ProcessSection />
                         {(!settings || settings.visibility?.about !== false) && (
                             <>
-                                <About settings={settings?.about} />
+                                <About settings={settings?.about} skills={skills} />
                                 <TestimonialsSection />
                             </>
                         )}
                         <NewsletterSection />
-                        <DynamicResume experience={experience || []} settings={settings} />
+
                         {(!settings || settings.visibility?.contact !== false) && (
-                            <Footer settings={settings?.contact} visibility={settings?.visibility} projectCount={projects.length} />
+                            <>
+                                <Contact settings={settings?.contact} />
+                                <Footer settings={settings?.contact} visibility={settings?.visibility} projectCount={projects.length} />
+                            </>
                         )}
                     </SmoothScroll>
                 </div>

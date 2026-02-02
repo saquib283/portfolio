@@ -218,6 +218,33 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../src/app/labs/3d-particles/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/labs/3d-particles">> = Specific
+  const handler = {} as typeof import("../../src/app/labs/3d-particles/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/labs/glass-morphism/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/labs/glass-morphism">> = Specific
+  const handler = {} as typeof import("../../src/app/labs/glass-morphism/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/labs/liquid-buttons/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/labs/liquid-buttons">> = Specific
+  const handler = {} as typeof import("../../src/app/labs/liquid-buttons/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/">> = Specific

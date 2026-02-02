@@ -310,6 +310,30 @@
       "namedRegex": "^/guestbook(?:/)?$"
     },
     {
+      "page": "/icon.png",
+      "regex": "^/icon\\.png(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/icon\\.png(?:/)?$"
+    },
+    {
+      "page": "/labs/3d-particles",
+      "regex": "^/labs/3d\\-particles(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/labs/3d\\-particles(?:/)?$"
+    },
+    {
+      "page": "/labs/glass-morphism",
+      "regex": "^/labs/glass\\-morphism(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/labs/glass\\-morphism(?:/)?$"
+    },
+    {
+      "page": "/labs/liquid-buttons",
+      "regex": "^/labs/liquid\\-buttons(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/labs/liquid\\-buttons(?:/)?$"
+    },
+    {
       "page": "/opengraph-image.png",
       "regex": "^/opengraph\\-image\\.png(?:/)?$",
       "routeKeys": {},

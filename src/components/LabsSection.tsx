@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { Beaker, ExternalLink, Zap, Sparkles, Layers } from 'lucide-react';
 import { Card, Badge } from './ui';
 
@@ -10,21 +11,21 @@ const experiments = [
         description: "SVG filter based gooey interaction for high-end navigation.",
         icon: Zap,
         tags: ["SVG", "Framer Motion"],
-        link: "#"
+        link: "/labs/liquid-buttons"
     },
     {
         title: "3D Particle Field",
         description: "Interactive noise-driven particles with depth awareness.",
         icon: Sparkles,
         tags: ["Three.js", "R3F"],
-        link: "#"
+        link: "/labs/3d-particles"
     },
     {
         title: "Glass Morphic UI",
         description: "Advanced backdrop filters and border gradients.",
         icon: Layers,
         tags: ["CSS", "Design"],
-        link: "#"
+        link: "/labs/glass-morphism"
     }
 ];
 
@@ -58,25 +59,27 @@ export default function LabsSection() {
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
                         >
-                            <Card className="group h-full flex flex-col hover:border-accent/40 transition-all border-border/50 bg-surface/20">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className="p-3 bg-accent/5 rounded-2xl text-accent group-hover:scale-110 transition-transform">
-                                        <exp.icon size={24} />
+                            <Link href={exp.link} className="block h-full cursor-pointer">
+                                <Card className="group h-full flex flex-col hover:border-accent/40 transition-all border-border/50 bg-surface/20">
+                                    <div className="flex justify-between items-start mb-6">
+                                        <div className="p-3 bg-accent/5 rounded-2xl text-accent group-hover:scale-110 transition-transform">
+                                            <exp.icon size={24} />
+                                        </div>
+                                        <ExternalLink size={18} className="text-secondary/20 group-hover:text-accent transition-colors" />
                                     </div>
-                                    <ExternalLink size={18} className="text-secondary/20 group-hover:text-accent transition-colors" />
-                                </div>
-                                <h3 className="text-xl font-bold text-primary mb-3">{exp.title}</h3>
-                                <p className="text-secondary text-sm mb-6 flex-grow">
-                                    {exp.description}
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {exp.tags.map(tag => (
-                                        <Badge key={tag} variant="secondary" className="text-[10px] bg-secondary/5 border-secondary/10">
-                                            {tag}
-                                        </Badge>
-                                    ))}
-                                </div>
-                            </Card>
+                                    <h3 className="text-xl font-bold text-primary mb-3">{exp.title}</h3>
+                                    <p className="text-secondary text-sm mb-6 flex-grow">
+                                        {exp.description}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {exp.tags.map(tag => (
+                                            <Badge key={tag} variant="secondary" className="text-[10px] bg-secondary/5 border-secondary/10">
+                                                {tag}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                </Card>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

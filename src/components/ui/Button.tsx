@@ -15,13 +15,13 @@ export default function Button({
     disabled,
     ...props
 }: ButtonProps) {
-    const baseStyles = "inline-flex items-center justify-center font-bold rounded-lg transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none";
+    const baseStyles = "inline-flex items-center justify-center font-bold rounded-lg transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ring-offset-background";
 
     const variants = {
-        primary: "bg-primary text-background hover:opacity-90",
-        secondary: "bg-surfaceHighlight text-primary hover:bg-surface",
-        outline: "border border-border text-primary hover:bg-surface",
-        ghost: "text-secondary hover:text-primary hover:bg-surface"
+        primary: "bg-primary text-background hover:bg-primary/90 shadow-sm hover:shadow-md",
+        secondary: "bg-surfaceHighlight text-primary hover:bg-surface border border-transparent",
+        outline: "border border-border text-primary hover:bg-surfaceHighlight",
+        ghost: "text-secondary hover:text-primary hover:bg-surfaceHighlight"
     };
 
     const sizes = {
