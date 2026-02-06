@@ -11,7 +11,8 @@ import {
     FileText,
     Settings,
     Search,
-    Github
+    Github,
+    Terminal
 } from "lucide-react";
 
 export function CommandPalette() {
@@ -91,6 +92,13 @@ export function CommandPalette() {
                         </Command.Group>
 
                         <Command.Group heading="Admin" className="text-xs font-medium text-secondary px-2 mb-2 mt-4">
+                            <Command.Item
+                                onSelect={() => runCommand(() => window.dispatchEvent(new Event('toggle-game')))}
+                                className="flex items-center px-2 py-3 text-sm text-green-500 rounded cursor-pointer hover:bg-white/10 aria-selected:bg-white/10 transition-colors"
+                            >
+                                <Terminal className="mr-3 h-4 w-4 text-green-500" />
+                                <span>Enter Hacker Mode</span>
+                            </Command.Item>
                             <Command.Item
                                 onSelect={() => runCommand(() => router.push('/admin'))}
                                 className="flex items-center px-2 py-3 text-sm text-white rounded cursor-pointer hover:bg-white/10 aria-selected:bg-white/10 transition-colors"

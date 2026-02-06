@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Syne, Plus_Jakarta_Sans } from "next/font/google";
 import "../index.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { SoundProvider } from "@/contexts/SoundContext";
 import MouseSpotlight from "@/components/ux/MouseSpotlight";
+import GameManager from "@/components/games/GameManager";
 
 const syne = Syne({
     subsets: ["latin"],
@@ -72,10 +74,13 @@ export default function RootLayout({
         <html lang="en" className={`${syne.variable} ${plusJakartaSans.variable}`} suppressHydrationWarning>
             <body className="font-sans antialiased overflow-x-hidden">
                 <ThemeProvider>
-                    <MouseSpotlight />
-                    <div className="relative w-full max-w-[100vw] overflow-x-hidden min-h-screen flex flex-col">
-                        {children}
-                    </div>
+                    <SoundProvider>
+                        <MouseSpotlight />
+                        <GameManager />
+                        <div className="relative w-full max-w-[100vw] overflow-x-hidden min-h-screen flex flex-col">
+                            {children}
+                        </div>
+                    </SoundProvider>
                 </ThemeProvider>
             </body>
         </html>

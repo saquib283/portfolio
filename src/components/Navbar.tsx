@@ -5,11 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useSound } from '@/contexts/SoundContext';
+import SoundToggle from './ui/SoundToggle';
 
 const Navbar = ({ settings }: { settings?: any }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { theme, toggleTheme } = useTheme();
+    const { playHover, playClick } = useSound();
     const resumeLink = settings?.contact?.resume;
 
     useEffect(() => {
@@ -44,6 +47,7 @@ const Navbar = ({ settings }: { settings?: any }) => {
                         <a
                             key={link.name}
                             href={link.href}
+                            onMouseEnter={() => playHover()}
                             className="text-sm font-medium text-secondary hover:text-primary transition-colors relative group"
                         >
                             {link.name}
@@ -62,13 +66,17 @@ const Navbar = ({ settings }: { settings?: any }) => {
                     )}
                     {(!settings || settings.features?.themeToggle !== false) && (
                         <button
-                            onClick={toggleTheme}
+                            onClick={() => {
+                                playClick();
+                                toggleTheme();
+                            }}
                             className="p-2 text-secondary hover:text-accent transition-colors rounded-full hover:bg-surface"
                             aria-label="Toggle theme"
                         >
                             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
                     )}
+                    <SoundToggle />
                 </div>
 
                 {/* Mobile Menu Button */}
