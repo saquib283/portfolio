@@ -64,7 +64,7 @@ export default function SkillOrbit({ skills = [] }: SkillOrbitProps) {
 
             {/* Central Sun */}
             <motion.div
-                className="relative z-20 w-20 h-20 md:w-40 md:h-40 rounded-full flex items-center justify-center z-10 group/sun cursor-pointer"
+                className="relative z-20 w-14 h-14 md:w-40 md:h-40 rounded-full flex items-center justify-center z-10 group/sun cursor-pointer"
                 onClick={triggerPulse}
                 whileTap={{ scale: 0.9 }}
             >

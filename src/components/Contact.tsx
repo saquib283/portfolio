@@ -36,7 +36,7 @@ const Contact = ({ settings }: { settings?: any }) => {
     const github = settings?.github || 'https://github.com/saquib283';
 
     return (
-        <section id="contact" className="py-24 px-6 relative overflow-hidden">
+        <section id="contact" className="py-16 md:py-24 px-4 md:px-6 relative overflow-hidden">
             {/* Ambient Background */}
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -46,9 +46,9 @@ const Contact = ({ settings }: { settings?: any }) => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-10 md:mb-16"
                 >
-                    <h2 className="font-display text-4xl md:text-6xl font-bold text-primary mb-6">
+                    <h2 className="font-display text-3xl md:text-6xl font-bold text-primary mb-6">
                         Have an idea? Let's <span className="text-accent">build it.</span>
                     </h2>
                     <p className="text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">

@@ -29,7 +29,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
     const [imageError, setImageError] = useState(false);
 
     return (
-        <div className="inline-block min-w-[400px] p-8 bg-surface border border-border/10 rounded-[2rem] relative">
+        <div className="inline-block min-w-[260px] md:min-w-[400px] p-6 md:p-8 bg-surface border border-border/10 rounded-[2rem] relative whitespace-normal">
             <Quote className="absolute top-6 right-8 text-accent/10" size={40} />
             <p className="text-primary text-lg font-medium mb-8 whitespace-normal leading-relaxed italic">
                 "{t.content}"

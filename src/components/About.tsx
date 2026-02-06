@@ -26,16 +26,16 @@ const About = ({ settings, experience = [], skills = [] }: { settings?: any, exp
         : (settings?.skills && settings.skills.length > 0 ? settings.skills : ["Next.js", "React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Framer Motion", "UI/UX Design"]);
 
     return (
-        <section id="about" className="py-24 px-6 bg-surface">
+        <section id="about" className="py-16 md:py-24 px-4 md:px-6 bg-surface overflow-hidden">
             <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 item-start mb-24">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 item-start mb-16 md:mb-24">
                     {/* Left Column: Intro */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-6">
+                        <h2 className="font-display text-3xl md:text-5xl font-bold text-primary mb-6">
                             {title}
                         </h2>
                         <p className="text-secondary text-lg leading-relaxed mb-8">

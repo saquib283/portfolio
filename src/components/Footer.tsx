@@ -5,7 +5,7 @@ const Footer = ({ settings, visibility, projectCount = 15 }: { settings?: any, v
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="border-t border-border py-12 px-6 bg-surface">
+        <footer className="border-t border-border py-12 px-4 md:px-6 bg-surface">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     {/* Brand */}

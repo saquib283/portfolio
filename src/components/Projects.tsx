@@ -45,13 +45,13 @@ const Projects = ({ projects, showViewCounter = true }: { projects: ProjectType[
     const displayProjects = projectsState.length > 0 ? projectsState : [];
 
     return (
-        <section id="projects" className="py-24 px-6 bg-background">
+        <section id="projects" className="py-16 md:py-24 px-4 md:px-6 bg-background overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="font-display text-4xl md:text-5xl font-bold mb-16 text-primary text-center md:text-left tracking-tighter"
+                    className="font-display text-3xl md:text-5xl font-bold mb-10 md:mb-16 text-primary text-center md:text-left tracking-tighter"
                 >
                     Selected <span className="text-secondary/40 italic">Works</span>
                 </motion.h2>

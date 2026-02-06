@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Syne, Plus_Jakarta_Sans } from "next/font/google";
 import "../index.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -13,6 +13,17 @@ const plusJakartaSans = Plus_Jakarta_Sans({
     subsets: ["latin"],
     variable: "--font-plus-jakarta",
 });
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    themeColor: [
+        { media: "(prefers-color-scheme: light)", color: "white" },
+        { media: "(prefers-color-scheme: dark)", color: "black" },
+    ],
+};
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com'),
@@ -59,10 +70,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${syne.variable} ${plusJakartaSans.variable}`} suppressHydrationWarning>
-            <body className="font-sans antialiased">
+            <body className="font-sans antialiased overflow-x-hidden">
                 <ThemeProvider>
                     <MouseSpotlight />
-                    {children}
+                    <div className="relative w-full max-w-[100vw] overflow-x-hidden min-h-screen flex flex-col">
+                        {children}
+                    </div>
                 </ThemeProvider>
             </body>
         </html>
