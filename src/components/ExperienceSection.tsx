@@ -32,7 +32,7 @@ const Experience = ({ experience }: { experience: ExperienceType[] }) => {
                     Experience <span className="text-accent">Timeline</span>
                 </motion.h2>
 
-                <div className="relative border-l border-border ml-4 md:ml-12 pl-8 md:pl-12 space-y-12">
+                <div className="relative border-l border-border ml-3 md:ml-12 pl-6 md:pl-12 space-y-12">
                     {sortedExperience.map((job, index) => (
                         <motion.div
                             key={index}

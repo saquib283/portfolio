@@ -14,7 +14,8 @@ import {
     BarChart3,
     Settings,
     LogOut,
-    ExternalLink
+    ExternalLink,
+    DollarSign
 } from 'lucide-react';
 
 export default async function AdminLayout({
@@ -33,6 +34,7 @@ export default async function AdminLayout({
         { label: 'Projects', href: '/admin/projects', icon: FolderKanban },
         { label: 'Experience', href: '/admin/experience', icon: Briefcase },
         { label: 'Skills', href: '/admin/skills', icon: Wrench },
+        { label: 'Pricing', href: '/admin/pricing', icon: DollarSign },
         { label: 'Messages', href: '/admin/messages', icon: MessageSquare },
         { label: 'Blog Posts', href: '/admin/posts', icon: FileText },
         { label: 'Guestbook', href: '/admin/guestbook', icon: BookOpen },

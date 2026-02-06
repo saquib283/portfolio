@@ -21,6 +21,7 @@ import TestimonialsSection from './TestimonialsSection';
 import NewsletterSection from './NewsletterSection';
 import SpotifyTracker from './SpotifyTracker';
 import GitHubPulse from './GitHubPulse';
+import Pricing from './Pricing';
 
 import Terminal from './Terminal';
 import { useTerminal } from '@/hooks/useTerminal';
@@ -88,6 +89,7 @@ export default function ClientHome({ projects, settings, experience, skills }: C
                             <>
                                 <About settings={settings?.about} skills={skills} />
                                 <TestimonialsSection />
+                                <Pricing />
                             </>
                         )}
                         <NewsletterSection />

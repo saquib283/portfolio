@@ -9,7 +9,9 @@ const ALLOWED_TYPES = [
     'application/msword',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'image/jpeg',
-    'image/png'
+    'image/png',
+    'image/gif',
+    'image/webp'
 ];
 
 export async function POST(req: NextRequest) {
@@ -28,7 +30,7 @@ export async function POST(req: NextRequest) {
 
         if (!ALLOWED_TYPES.includes(file.type)) {
             return NextResponse.json({
-                error: 'Invalid file type. Only PDF, Word, JPEG, and PNG are allowed.'
+                error: 'Invalid file type. Only PDF, Word, JPEG, PNG, GIF, and WebP are allowed.'
             }, { status: 400 });
         }
 

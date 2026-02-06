@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Info } from 'lucide-react';
 import Link from 'next/link';
+import ImageUploader from './ImageUploader';
 
 interface PostFormProps {
     initialData?: any;
@@ -30,6 +31,10 @@ export default function PostForm({ initialData, isEdit }: PostFormProps) {
         } else {
             setFormData({ ...formData, [name]: value });
         }
+    };
+
+    const handleImageChange = (url: string) => {
+        setFormData({ ...formData, coverImage: url });
     };
 
     // Auto-generate slug from title if empty
@@ -117,15 +122,12 @@ export default function PostForm({ initialData, isEdit }: PostFormProps) {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-medium text-secondary mb-1">Cover Image URL</label>
-                        <input
-                            name="coverImage"
-                            value={formData.coverImage}
-                            onChange={handleChange}
-                            className="w-full bg-surfaceHighlight border border-border rounded p-2 text-primary focus:outline-none focus:border-accent"
-                        />
-                    </div>
+                    <ImageUploader
+                        value={formData.coverImage}
+                        onChange={handleImageChange}
+                        label="Cover Image"
+                        placeholder="Enter URL or upload an image"
+                    />
                     <div>
                         <label className="block text-sm font-medium text-secondary mb-1">Tags (comma separated)</label>
                         <input

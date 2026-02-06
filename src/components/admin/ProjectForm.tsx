@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Info } from 'lucide-react';
 import Link from 'next/link';
+import ImageUploader from './ImageUploader';
 
 interface ProjectFormProps {
     initialData?: any;
@@ -24,6 +25,10 @@ export default function ProjectForm({ initialData, isEdit }: ProjectFormProps) {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleImageChange = (url: string) => {
+        setFormData({ ...formData, image: url });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -97,16 +102,12 @@ export default function ProjectForm({ initialData, isEdit }: ProjectFormProps) {
                         required
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-secondary mb-1">Image URL</label>
-                    <input
-                        name="image"
-                        value={formData.image}
-                        onChange={handleChange}
-                        className="w-full bg-surfaceHighlight border border-border rounded p-2 text-primary focus:outline-none focus:border-accent"
-                        required
-                    />
-                </div>
+                <ImageUploader
+                    value={formData.image}
+                    onChange={handleImageChange}
+                    label="Project Image"
+                    placeholder="Enter URL or upload an image"
+                />
                 <div>
                     <label className="block text-sm font-medium text-secondary mb-1">Project Link (Demo/GitHub)</label>
                     <input

@@ -7,27 +7,28 @@
   :root,
   :root[data-theme='light'] {
     /* Light mode colors (RGB Triples) */
-    --background: 255, 255, 255;
-    --surface: 245, 245, 245;
-    --surfaceHighlight: 238, 238, 238;
-    --primary: 26, 26, 26;
-    --secondary: 102, 102, 102;
-    --accent: 0, 102, 255;
-    --accent-spotlight: rgba(0, 102, 255, 0.05);
-    --border: 0, 0, 0;
+    --background: 255 255 255;
+    --surface: 245 245 245;
+    --surfaceHighlight: 238 238 238;
+    --primary: 26 26 26;
+    --secondary: 102 102 102;
+    --accent: 0 102 255;
+    --accent-spotlight: 0 102 255;
+    /* Note: Spotlight uses rgba in config if needed, but here kept as raw triplet if used consistently. Actually config doesn't use spotlight variable for colors object mostly. But let's fix consistency */
+    --border: 0 0 0;
   }
 
   [data-theme='dark'],
   .dark {
     /* Dark mode colors (RGB Triples) */
-    --background: 10, 10, 11;
-    --surface: 26, 26, 29;
-    --surfaceHighlight: 37, 37, 42;
-    --primary: 255, 255, 255;
-    --secondary: 160, 160, 165;
-    --accent: 0, 234, 255;
-    --accent-spotlight: rgba(0, 234, 255, 0.1);
-    --border: 255, 255, 255;
+    --background: 10 10 11;
+    --surface: 26 26 29;
+    --surfaceHighlight: 37 37 42;
+    --primary: 255 255 255;
+    --secondary: 160 160 165;
+    --accent: 0 234 255;
+    --accent-spotlight: 0 234 255;
+    --border: 255 255 255;
   }
 
   body {
@@ -53,5 +54,10 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .mask-gradient {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
 }
