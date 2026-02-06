@@ -73,14 +73,8 @@ export default function BlogList({ posts }: { posts: any[] }) {
                                         </Badge>
                                     ))}
                                 </div>
-                                <time className="text-sm font-mono text-secondary/60">
-                                    {new Date(post.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
-                                </time>
+                                <span>{Math.ceil((post.content?.split(' ').length || 0) / 200)} min read</span>
                             </div>
-
-                            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 group-hover:text-accent transition-colors">
-                                {post.title}
-                            </h2>
 
                             <p className="text-secondary leading-relaxed mb-6">
                                 {post.description}

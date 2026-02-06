@@ -41,61 +41,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         notFound();
     }
 
+    // Simple functionality to extract headers for ToC
+    // In a production app with remark plugins this would be automatic,
+    // but here we can do a regex pass for simplicity or use a client component.
+    // Let's pass the raw content to a client component that handles the ToC and Rendering.
+
     return (
         <div className="bg-background min-h-screen text-secondary font-sans selection:bg-accent selection:text-white flex flex-col">
             <Navbar settings={settings} />
-
-            <main className="flex-grow py-12 px-6">
-                <article className="max-w-3xl mx-auto mt-12">
-                    <Link
-                        href="/blog"
-                        className="inline-flex items-center text-sm text-secondary hover:text-white transition-colors mb-12 group"
-                    >
-                        <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                        Back to Blog
-                    </Link>
-
-                    <header className="mb-12">
-                        <div className="flex gap-2 mb-6">
-                            {post.tags.map((tag: string, i: number) => (
-                                <span key={i} className="text-xs font-medium px-2 py-1 rounded-full bg-accent/10 text-accent border border-accent/20">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                            {post.title}
-                        </h1>
-                        <div className="flex items-center gap-4 text-sm text-secondary/60 font-mono border-l-2 border-accent pl-4">
-                            <time>
-                                {new Date(post.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
-                            </time>
-                            <span>•</span>
-                            <span>{Math.ceil(post.content.split(' ').length / 200)} min read</span>
-                        </div>
-                    </header>
-
-                    {post.coverImage && (
-                        <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-white/10 mb-12">
-                            <Image
-                                src={post.coverImage}
-                                alt={post.title}
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                        </div>
-                    )}
-
-                    <div className="prose prose-invert prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-accent prose-img:rounded-xl prose-pre:bg-surfaceHighlight prose-pre:border prose-pre:border-white/10">
-                        <ReactMarkdown>
-                            {post.content}
-                        </ReactMarkdown>
-                    </div>
-                </article>
-            </main>
-
-            <Footer />
+            <BlogPostContent post={post} />
+            <Footer settings={settings?.contact} visibility={settings?.visibility} />
         </div>
     );
 }
+
+// Separate client component for interactivity (ToC)
+import BlogPostContent from '@/components/BlogPostContent';
