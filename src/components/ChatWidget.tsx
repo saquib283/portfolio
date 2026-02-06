@@ -59,7 +59,7 @@ export default function ChatWidget() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end pointer-events-none">
+        <div className="fixed inset-0 z-[9999] pointer-events-none flex flex-col justify-end items-end p-4 md:p-6">
             <div className="pointer-events-auto">
                 <AnimatePresence>
                     {isOpen && (
@@ -67,7 +67,7 @@ export default function ChatWidget() {
                             initial={{ opacity: 0, scale: 0.9, y: 20, x: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20, x: 20 }}
-                            className="mb-6 w-[85vw] max-w-[380px] h-[550px] max-h-[70vh] bg-surface/90 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden origin-bottom-right"
+                            className="mb-4 w-[85vw] max-w-[380px] h-[550px] max-h-[80vh] bg-surface/90 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden origin-bottom-right pointer-events-auto"
                         >
                             {/* Header */}
                             <div className="p-4 border-b border-border/50 bg-gradient-to-r from-accent/5 to-transparent flex justify-between items-center">
@@ -145,7 +145,7 @@ export default function ChatWidget() {
 
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="group relative flex items-center justify-center w-16 h-16 bg-primary text-background rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] transition-all hover:scale-110 active:scale-90"
+                    className="group relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-primary text-background rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] transition-all hover:scale-110 active:scale-90 pointer-events-auto"
                     aria-label={isOpen ? "Close chat" : "Open chat"}
                 >
                     <AnimatePresence mode='wait'>

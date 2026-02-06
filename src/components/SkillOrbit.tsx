@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -16,6 +16,15 @@ interface SkillOrbitProps {
 
 export default function SkillOrbit({ skills = [] }: SkillOrbitProps) {
     const normalizedSkills = useMemo(() => skills.map(s => typeof s === "string" ? { name: s } : s), [skills]);
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const rings = useMemo(() => {
         const total = normalizedSkills.length;
@@ -55,7 +64,7 @@ export default function SkillOrbit({ skills = [] }: SkillOrbitProps) {
 
             {/* Central Sun */}
             <motion.div
-                className="relative z-20 w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center z-10 group/sun cursor-pointer"
+                className="relative z-20 w-20 h-20 md:w-40 md:h-40 rounded-full flex items-center justify-center z-10 group/sun cursor-pointer"
                 onClick={triggerPulse}
                 whileTap={{ scale: 0.9 }}
             >
@@ -94,7 +103,9 @@ export default function SkillOrbit({ skills = [] }: SkillOrbitProps) {
 
             {/* Orbit Rings */}
             {rings.map((ring, i) => {
-                const radiusPercent = 35 + (i * 25); // 35%, 60%, 85% width
+                const baseRadius = isMobile ? 45 : 35; // Start wider on mobile
+                const step = isMobile ? 22 : 25;
+                const radiusPercent = baseRadius + (i * step);
                 const duration = 25 + (i * 10) + (i % 2 * 5); // 25s, 40s, 50s
                 const reverse = i % 2 !== 0;
 

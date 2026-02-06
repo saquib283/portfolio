@@ -39,7 +39,7 @@ const Navbar = ({ settings }: { settings?: any }) => {
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center space-x-10">
+                <div className="hidden lg:flex items-center space-x-10">
                     {links.map((link) => (
                         <a
                             key={link.name}
@@ -74,7 +74,7 @@ const Navbar = ({ settings }: { settings?: any }) => {
                 {/* Mobile Menu Button */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="md:hidden text-primary hover:text-accent transition-colors"
+                    className="lg:hidden text-primary hover:text-accent transition-colors"
                     aria-label="Toggle menu"
                 >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -88,7 +88,7 @@ const Navbar = ({ settings }: { settings?: any }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-40 bg-background/98 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 md:hidden"
+                        className="fixed inset-0 z-[100] bg-background/98 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 lg:hidden"
                     >
                         {links.map((link) => (
                             <a
