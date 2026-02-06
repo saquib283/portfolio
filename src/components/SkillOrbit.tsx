@@ -64,7 +64,7 @@ export default function SkillOrbit({ skills = [] }: SkillOrbitProps) {
 
             {/* Central Sun */}
             <motion.div
-                className="relative z-20 w-14 h-14 md:w-40 md:h-40 rounded-full flex items-center justify-center z-10 group/sun cursor-pointer"
+                className="relative z-20 w-12 h-12 md:w-40 md:h-40 rounded-full flex items-center justify-center z-10 group/sun cursor-pointer"
                 onClick={triggerPulse}
                 whileTap={{ scale: 0.9 }}
             >
@@ -103,7 +103,7 @@ export default function SkillOrbit({ skills = [] }: SkillOrbitProps) {
 
             {/* Orbit Rings */}
             {rings.map((ring, i) => {
-                const baseRadius = isMobile ? 45 : 35; // Start wider on mobile
+                const baseRadius = isMobile ? 35 : 35; // Start wider on mobile
                 const step = isMobile ? 22 : 25;
                 const radiusPercent = baseRadius + (i * step);
                 const duration = 25 + (i * 10) + (i % 2 * 5); // 25s, 40s, 50s
@@ -201,7 +201,7 @@ function SkillNode({ skill, isRelated }: { skill: Skill, isRelated: boolean }) {
     return (
         <div className="relative flex flex-col items-center justify-center">
             <motion.div
-                className={`w-10 h-10 md:w-14 md:h-14 backdrop-blur-md border rounded-full flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer group-hover/node:z-50
+                className={`w-8 h-8 md:w-14 md:h-14 backdrop-blur-md border rounded-full flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer group-hover/node:z-50
                     ${isRelated ? 'bg-accent/20 border-accent shadow-[0_0_30px_rgba(var(--accent-rgb),0.6)] scale-110' : 'bg-surface/80 border-white/10 hover:border-accent hover:scale-125 hover:shadow-[0_0_20px_rgba(var(--accent-rgb),0.4)]'}
                 `}
             >
@@ -211,7 +211,7 @@ function SkillNode({ skill, isRelated }: { skill: Skill, isRelated: boolean }) {
                         alt={skill.name}
                         width={28}
                         height={28}
-                        className="w-5 h-5 md:w-8 md:h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                        className="w-4 h-4 md:w-8 md:h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                         unoptimized
                         onError={() => setImgError(true)}
                     />
