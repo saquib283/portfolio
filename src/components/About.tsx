@@ -10,7 +10,7 @@ import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
-const About = ({ settings, experience = [], skills = [] }: { settings?: any, experience?: any[], skills?: any[] }) => {
+const About = ({ settings, skills = [] }: { settings?: any, skills?: any[] }) => {
     const title = settings?.title || "More than just code.";
     const description = settings?.description || "I bridge the gap between design and engineering. My approach is user-centric, focusing on creating seamless experiences that look great and perform even better.";
 
@@ -43,119 +43,71 @@ const About = ({ settings, experience = [], skills = [] }: { settings?: any, exp
                         </p>
                     </motion.div>
 
-                    {/* Right Column: Experience Timeline */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="relative"
-                    >
-                        <div className="flex items-center gap-3 mb-8">
-                            <Briefcase className="text-accent" />
-                            <h3 className="text-2xl font-bold text-primary">Experience</h3>
-                        </div>
 
-                        <div className="space-y-8 border-l border-border pl-8 relative">
-                            {experience.length > 0 ? experience.map((exp: any, index: number) => (
-                                <div key={index} className="relative group">
-                                    {/* Timeline Dot */}
-                                    <div className="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-surface border-2 border-border group-hover:border-accent group-hover:bg-accent transition-colors" />
-
-                                    <div className="space-y-2">
-                                        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                                            <h4 className="text-xl font-bold text-primary group-hover:text-accent transition-colors">{exp.position}</h4>
-                                            <span className="font-mono text-xs text-secondary/60">
-                                                {new Date(exp.startDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}
-                                                {' - '}
-                                                {exp.current ? 'Present' : new Date(exp.endDate).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}
-                                            </span>
-                                        </div>
-                                        <div className="text-base text-primary/80 font-medium">{exp.company}</div>
-                                        <p className="text-secondary text-sm leading-relaxed max-w-md">
-                                            {exp.description}
-                                        </p>
-                                        {exp.technologies && exp.technologies.length > 0 && (
-                                            <div className="flex flex-wrap gap-2 pt-2">
-                                                {exp.technologies.map((tech: string, i: number) => (
-                                                    <span key={i} className="text-[10px] uppercase tracking-wider text-secondary/50 border border-border px-2 py-0.5 rounded">
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            )) : (
-                                <div className="text-secondary italic">No experience added yet.</div>
-                            )}
-                        </div>
-                    </motion.div>
                 </div>
 
-
-            </div>
-
-            {/* Skills Visualization */}
-            <div className="max-w-6xl mx-auto mt-20">
-                <motion.div
-                    className="flex flex-col items-center justify-center gap-6 mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    {/* Animated decorative lines */}
-                    <div className="flex items-center gap-6">
-                        <motion.div
-                            className="h-[2px] w-20 bg-gradient-to-r from-transparent via-cyan-500/50 to-indigo-500/80"
-                            initial={{ width: 0, opacity: 0 }}
-                            whileInView={{ width: 80, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        />
-                        <div className="relative">
-                            {/* Glowing background */}
-                            <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-xl rounded-full" />
-
-                            {/* Main title */}
-                            <motion.span
-                                className="relative text-sm uppercase tracking-[0.35em] font-bold bg-gradient-to-r from-cyan-400 via-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent bg-[length:200%_auto]"
-                                animate={{ backgroundPosition: ["0% center", "200% center"] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                            >
-                                Tech Stack
-                            </motion.span>
-
-                            {/* Animated underline */}
+                {/* Skills Visualization */}
+                <div className="max-w-6xl mx-auto mt-20">
+                    <motion.div
+                        className="flex flex-col items-center justify-center gap-6 mb-16"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        {/* Animated decorative lines */}
+                        <div className="flex items-center gap-6">
                             <motion.div
-                                className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-[3px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 rounded-full"
-                                initial={{ width: 0 }}
-                                whileInView={{ width: 48 }}
+                                className="h-[2px] w-20 bg-gradient-to-r from-transparent via-cyan-500/50 to-indigo-500/80"
+                                initial={{ width: 0, opacity: 0 }}
+                                whileInView={{ width: 80, opacity: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.4 }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                            />
+                            <div className="relative">
+                                {/* Glowing background */}
+                                <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-xl rounded-full" />
+
+                                {/* Main title */}
+                                <motion.span
+                                    className="relative text-sm uppercase tracking-[0.35em] font-bold bg-gradient-to-r from-cyan-400 via-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent bg-[length:200%_auto]"
+                                    animate={{ backgroundPosition: ["0% center", "200% center"] }}
+                                    transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                                >
+                                    Tech Stack
+                                </motion.span>
+
+                                {/* Animated underline */}
+                                <motion.div
+                                    className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-[3px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 rounded-full"
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: 48 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.4 }}
+                                />
+                            </div>
+                            <motion.div
+                                className="h-[2px] w-20 bg-gradient-to-l from-transparent via-pink-500/50 to-purple-500/80"
+                                initial={{ width: 0, opacity: 0 }}
+                                whileInView={{ width: 80, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
                             />
                         </div>
-                        <motion.div
-                            className="h-[2px] w-20 bg-gradient-to-l from-transparent via-pink-500/50 to-purple-500/80"
-                            initial={{ width: 0, opacity: 0 }}
-                            whileInView={{ width: 80, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        />
-                    </div>
 
-                    {/* Subtitle with gradient */}
-                    <motion.p
-                        className="text-secondary/60 text-base max-w-lg text-center font-light"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 }}
-                    >
-                        The <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 font-medium">tools and technologies</span> I use to bring ideas to life
-                    </motion.p>
-                </motion.div>
-                <SkillOrbit skills={displaySkills} />
+                        {/* Subtitle with gradient */}
+                        <motion.p
+                            className="text-secondary/60 text-base max-w-lg text-center font-light"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                        >
+                            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 font-medium">tools and technologies</span> I use to bring ideas to life
+                        </motion.p>
+                    </motion.div>
+                    <SkillOrbit skills={displaySkills} />
+                </div>
             </div>
         </section>
     );
